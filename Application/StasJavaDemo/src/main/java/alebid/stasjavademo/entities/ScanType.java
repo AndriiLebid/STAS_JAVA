@@ -17,7 +17,7 @@ public class ScanType {
     @Size(min = 3, max = 20, message = "Scan name can't be more 20 and less 3 characters")
     private String typeName;
 
-    @OneToMany(mappedBy = "RawScan", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "scanType", fetch = FetchType.LAZY)
     private List<RawScan> scanList;
 
 

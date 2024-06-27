@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <title>Navigation</title>
+
+</head>
+<body>
+<header>
+    <div th:fragment="navbar" style="background-color: #111111;">
+        <div class="container d-flex align-items-center justify-content-center">
+            <nav class="navbar navbar-expand-sm navbar-light w-100" style="background-color: #111111;">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav ml-auto">
+                            <!--/*@thymesVar id="authenticated" type="java.lang.Boolean"*/-->
+                            <li class="nav-item">
+                                <a class="nav-link text-white" th:href="@{/scan}">Scan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" th:href="@{/shift}">Shift</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" th:href="@{/employee}">Employee</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" th:href="@{/user}">User</a>
+                            </li>
+                            <li th:unless="${authenticated}" class="nav-item">
+                                <a  class="nav-link text-white" th:href="@{/login}">Login</a>
+                            </li>
+                            <li th:if="${authenticated}" class="nav-item">
+                                <form th:action="@{/logout}" method="post">
+                                    <input type="submit" class="btn btn-link" value="Logout">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+</body>
+</html>

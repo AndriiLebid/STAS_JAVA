@@ -17,7 +17,7 @@ public class Role {
     @Size(min = 3, max = 20, message = "Roll name can't be more 20 and less 3 characters")
     private String roleName;
 
-    @OneToMany(mappedBy = "User", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY)
     private List<User> userList;
 
     public Role() {

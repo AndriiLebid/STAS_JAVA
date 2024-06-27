@@ -18,7 +18,7 @@ public class EmployeeType {
     @Size(min = 3, max = 20, message = "Employee name can't be more 20 and less 3 characters")
     private String employeeName;
 
-    @OneToMany(mappedBy = "Employee", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "employeeType", fetch = FetchType.LAZY)
     private List<Employee> employeeList;
 
     public EmployeeType() {
