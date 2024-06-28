@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <meta charset="UTF-8">
+    <title>STAS Demo systems - Scan Detail</title>
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+
+<div class="d-flex align-items-center justify-content-center">
+    <div class="container text-content">
+        <h1>Scan's Details</h1>
+        <div>
+            <h4>Scan</h4>
+            <hr/>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Scan ID
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${scan.id}"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Scan Date Name
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${scan.scanDate}"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Scans Type
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${scan.scanType.getTypeName()}"></span>
+                </dd>
+            </dl>
+
+
+            <div>
+                <a th:href="@{/scan}">Go Back</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="fixed-bottom" th:insert="~{footer :: footer}"></footer>
+</body>
+</html>
