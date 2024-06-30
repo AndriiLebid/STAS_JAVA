@@ -26,7 +26,15 @@
             </dl>
             <dl class="row">
                 <dt class="col-sm-2">
-                    User Name
+                    Cart Number
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${employee.employeeCardNumber}"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    First Name
                 </dt>
                 <dd class="col-sm-10">
                     <span th:text="${employee.employeeFirstName}"></span>
@@ -34,12 +42,55 @@
             </dl>
             <dl class="row">
                 <dt class="col-sm-2">
-                    User Role
+                    Middle Initial
                 </dt>
                 <dd class="col-sm-10">
-                    <span th:text="${employee.employeeType}"></span>
+                    <span th:text="${employee.middleInitial}"></span>
                 </dd>
             </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Last Name
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${employee.employeeLastName}"></span>
+                </dd>
+            </dl>
+
+            <div th:if="${employee.scanList.size() == 0}">
+                <p>No Scans yet!</p>
+            </div>
+            <table class="table" th:unless="${employee.scanList.size() == 0}">
+                <thead>
+                <tr>
+                    <th>Scan ID</th>
+                    <th>Scan Date and Time</th>
+                    <th>Scan Type</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="scan: ${employee.scanList}">
+                    <td>
+                        <span th:text="${scan.id}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${scan.scanDate}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${scan.scanType.getTypeName()}"></span>
+                    </td>
+                    <td>
+                        <a th:href="@{/seating/edit/{id}(id=${scan.id})}">Edit</a>
+                        <a th:href="@{/seating/delete/{id}(id=${scan.id})}">| Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+
+
+
 
 
             <div>
