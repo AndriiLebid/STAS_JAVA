@@ -5,7 +5,7 @@
     <script th:src="@{/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{styles.css}">
     <meta charset="UTF-8">
-    <title>Edit User</title>
+    <title>Edit Scan</title>
 </head>
 <body>
 <header th:insert="~{nav :: navbar}"></header>
@@ -13,28 +13,36 @@
 <div class="d-flex align-items-center justify-content-center">
     <div class="container text-content">
 
-        <h1>Edit User</h1>
-        <form method="post" th:action="@{/users/edit/{id}(id=${user.id})}" th:object="${user}">
+        <h1>Edit Scan</h1>
+        <form method="post" th:action="@{/scans/edit/{id}(id=${scan.id})}" th:object="${scan}">
             <input th:field="*{id}" type="hidden" />
-            <input th:field="*{password}" type="hidden"/>
+
             <div class="form-group">
-                <label class="form-label">User Name: </label>
-                <input class="form-control" th:field="*{userName}"/>
-                <div class="alert alert-warning" th:errors="*{userName}"></div>
+                <label class="form-label">Scan Date: </label>
+                <input class="form-control" th:field="*{scanDate}"/>
+                <div class="alert alert-warning" th:errors="*{scanDate}"></div>
             </div>
             <div class="form-group">
-                <label class="form-label">User Type:</label>
-                <select class="form-control" id="role" th:field="*{role}">
-                    <option value="">--SELECT ROLE--</option>
-                    <option th:each="rl : ${roles}" th:value="${rl.id}" th:text = "${rl.roleName}"></option>
+                <label class="form-label">Scan Type:</label>
+                <select class="form-control" id="type" th:field="*{scanType}">
+                    <option value="">--SELECT TYPE--</option>
+                    <option th:each="tp : ${types}" th:value="${tp.id}" th:text = "${tp.scanType}"></option>
                 </select>
-                <div class="alert alert-warning" th:errors="*{role}"></div>
+                <div class="alert alert-warning" th:errors="*{scanType}"></div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Employee:</label>
+                <select class="form-control" id="type" th:field="*{employee}">
+                    <option value="">--SELECT EMPLOYEE--</option>
+                    <option th:each="em : ${employees}" th:value="${em.employeeCardNumber}" th:text = "${em.employeeLastName}"></option>
+                </select>
+                <div class="alert alert-warning" th:errors="*{employee}"></div>
             </div>
 
             <input class="btn btn-primary" type="submit" value="Edit"/>
         </form>
         <div>
-            <a th:href="@{/users}">Go Back</a>
+            <a th:href="@{/scans}">Go Back</a>
         </div>
 
     </div>
