@@ -19,14 +19,14 @@
         </dt>
         <dd class = "col-sm-10">
             <span th:text="${employee.employeeFirstName}"></span>
-            <div class="alert alert-warning" th:errors="*{employee.employeeFirstName}"></div>
+
         </dd>
         <dt class="col-sm-2">
             Employee Last Name
         </dt>
         <dd class = "col-sm-10">
             <span th:text="${employee.employeeLastName}"></span>
-            <div class="alert alert-warning" th:errors="*{employee.employeeLastName}"></div>
+
         </dd>
         <form method="post" th:action="@{/employee/delete/{id}(id=${employee.id})}" th:object="${employee}">
             <input th:field="*{id}" type="hidden" />

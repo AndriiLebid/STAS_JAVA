@@ -49,7 +49,7 @@ public class EmployeeController {
         return "employee/create";
     }
 
-    @PostMapping(value = "/users/create")
+    @PostMapping(value = "/employee/create")
     public String create(@Valid Employee employee, BindingResult br, Model model) {
         //Save
         if (!br.hasErrors()) {
@@ -66,14 +66,14 @@ public class EmployeeController {
     public String edit(Model model, @PathVariable int id) {
         var employee = employeeRepository.findById(id);
         if (employee.isPresent()){
-            model.addAttribute("user", employee.get());
+            model.addAttribute("employee", employee.get());
             model.addAttribute("roles", employeeTypeRepository.findAll());
         }
         return "employee/edit";
     }
 
 
-    @PostMapping(value = "/users/edit/{id}")
+    @PostMapping(value = "/employee/edit/{id}")
     public String edit(@Valid Employee employee, BindingResult br, Model model) {
 
         if (!br.hasErrors()) {

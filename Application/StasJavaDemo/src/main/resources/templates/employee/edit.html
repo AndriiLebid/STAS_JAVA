@@ -14,8 +14,9 @@
     <div class="container text-content">
 
         <h1>Edit Employee</h1>
-        <form method="post" th:action="@{/employee/edit/{id}(id=${user.id})}" th:object="${user}">
+        <form method="post" th:action="@{/employee/edit/{id}(id=${employee.id})}" th:object="${employee}">
             <input th:field="*{id}" type="hidden" />
+            <input th:field="*{employeeType}" type="hidden" />
 
             <div class="form-group">
                 <label class="form-label">Employee First Name: </label>

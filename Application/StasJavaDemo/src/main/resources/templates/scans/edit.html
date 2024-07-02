@@ -24,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Scan Type:</label>
-                <select class="form-control" id="type" th:field="*{scanType}">
+                <select class="form-control" id="types" th:field="*{scanType}">
                     <option value="">--SELECT TYPE--</option>
                     <option th:each="tp : ${types}" th:value="${tp.id}" th:text = "${tp.scanType}"></option>
                 </select>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label class="form-label">Employee:</label>
-                <select class="form-control" id="type" th:field="*{employee}">
+                <select class="form-control" id="employee" th:field="*{employee}">
                     <option value="">--SELECT EMPLOYEE--</option>
                     <option th:each="em : ${employees}" th:value="${em.employeeCardNumber}" th:text = "${em.employeeLastName}"></option>
                 </select>

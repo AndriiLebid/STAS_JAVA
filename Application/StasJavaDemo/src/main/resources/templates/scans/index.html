@@ -31,6 +31,8 @@
                 </td>
                 <td>
                     <a th:href="@{/scans/{id}(id=${scan.id})}">Details</a>
+                    <a th:href="@{/scans/edit/{id}(id=${scan.id})}"> | Edit</a>
+                    <a th:href="@{/scans/delete/{id}(id=${scan.id})}">| Delete</a>
                 </td>
             </tr>
             </tbody>

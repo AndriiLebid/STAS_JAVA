@@ -27,10 +27,12 @@
                     <span th:text="${emp.id}"></span>
                 </td>
                 <td>
-                    <span th:text="${emp.employeeFirstName}"></span>
+                    <span th:text="${emp.employeeFirstName + ' ' + emp.middleInitial + ' ' + emp.employeeLastName}"></span>
                 </td>
                 <td>
                     <a th:href="@{/employee/{id}(id=${emp.id})}">Details</a>
+                    <a th:href="@{/employee/edit/{id}(id=${emp.id})}"> | Edit</a>
+                    <a th:href="@{/employee/delete/{id}(id=${emp.id})}"> | Hide</a>
                 </td>
             </tr>
             </tbody>

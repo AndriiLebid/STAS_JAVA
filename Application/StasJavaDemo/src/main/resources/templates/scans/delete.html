@@ -19,23 +19,20 @@
         </dt>
         <dd class = "col-sm-10">
             <span th:text="${scans.id}"></span>
-            <div class="alert alert-warning" th:errors="*{scans.id}"></div>
         </dd>
 
         <dt class="col-sm-2">
             Scan Date
         </dt>
         <dd class = "col-sm-10">
-            <span th:text="${scans.scanDate}"></span>
-            <div class="alert alert-warning" th:errors="*{scans.scanDate}"></div>
+            <span th:text="${scans.scanDate.toString()}"></span>
         </dd>
 
         <dt class="col-sm-2">
             Employee:
         </dt>
         <dd class = "col-sm-10">
-            <span th:text="${scans.employee}"></span>
-            <div class="alert alert-warning" th:errors="*{scans.employee}"></div>
+            <span th:text="${scans.employee.employeeFirstName + ' ' + scans.employee.middleInitial + ' ' + scans.employee.employeeLastName}"></span>
         </dd>
 
         <form method="post" th:action="@{/scans/delete/{id}(id=${scans.id})}" th:object="${scans}">

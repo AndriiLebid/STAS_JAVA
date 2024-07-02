@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 public class RawScan {
@@ -24,7 +25,7 @@ public class RawScan {
     @Column(nullable = false)
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
     @NotNull(message = "Scan Date can't be empty")
-    private LocalDate scanDate;
+    private LocalDateTime scanDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "typeId", foreignKey = @ForeignKey(name = "FK_Scan_Type"))
@@ -34,8 +35,7 @@ public class RawScan {
     public RawScan() {
     }
 
-    public RawScan(int id, Employee employee, LocalDate scanDate, ScanType scanType) {
-        this.id = id;
+    public RawScan(Employee employee, LocalDateTime scanDate, ScanType scanType) {
         this.employee = employee;
         this.scanDate = scanDate;
         this.scanType = scanType;
@@ -49,11 +49,11 @@ public class RawScan {
         this.scanType = scanType;
     }
 
-    public @NotNull(message = "Scan Date can't be empty") LocalDate getScanDate() {
+    public @NotNull(message = "Scan Date can't be empty") LocalDateTime getScanDate() {
         return scanDate;
     }
 
-    public void setScanDate(@NotNull(message = "Scan Date can't be empty") LocalDate scanDate) {
+    public void setScanDate(@NotNull(message = "Scan Date can't be empty") LocalDateTime scanDate) {
         this.scanDate = scanDate;
     }
 
