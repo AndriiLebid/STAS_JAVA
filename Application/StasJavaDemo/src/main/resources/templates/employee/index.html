@@ -13,6 +13,9 @@
 <div class="d-flex align-items-center justify-content-center">
     <div class="container text-content">
         <h3>Employee List</h3>
+        <div>
+            <a th:href="@{/employee/create}">Create New Employee</a>
+        </div>
         <table class="table" th:unless="${employee == null}">
             <thead>
             <tr>

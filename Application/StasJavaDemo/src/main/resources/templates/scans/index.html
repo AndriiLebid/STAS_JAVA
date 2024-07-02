@@ -13,11 +13,15 @@
 <div class="d-flex align-items-center justify-content-center">
     <div class="container text-content">
         <h3>Scan List</h3>
+        <div>
+            <a th:href="@{/scans/create}">Create New Scan</a>
+        </div>
         <table class="table" th:unless="${scans == null}">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Date&Time</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -25,6 +29,9 @@
             <tr th:each="scan: ${scans}">
                 <td>
                     <span th:text="${scan.id}"></span>
+                </td>
+                <td>
+                    <span th:text="${scan.employee.employeeFirstName + ' ' + scan.employee.middleInitial + ' ' + scan.employee.employeeLastName}"></span>
                 </td>
                 <td>
                     <span th:text="${scan.scanDate}"></span>

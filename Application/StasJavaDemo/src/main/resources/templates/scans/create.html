@@ -17,24 +17,24 @@
         <form method="post" th:action="@{/scans/create}" th:object="${scan}">
             <div class="form-group">
                 <label class="form-label">Scan Date: </label>
-                <input class="form-control" th:field="*{scanDate}"/>
+                <input class="form-control" th:field="*{scanDate}" type="datetime-local"/>
                 <div class="alert alert-warning" th:errors="*{scanDate}"></div>
             </div>
             <div class="form-group">
                 <label class="form-label">Scan Type:</label>
-                <select class="form-control" id="type" th:field="*{scanType}">
+                <select class="form-control" id="types" th:field="*{scanType}">
                     <option value="">--SELECT TYPE--</option>
-                    <option th:each="tp : ${types}" th:value="${tp.id}" th:text = "${tp.scanType}"></option>
+                    <option th:each="tp : ${types}" th:value="${tp.id}" th:text = "${tp.scanType.typeName}"></option>
                 </select>
-                <div class="alert alert-warning" th:errors="*{type}"></div>
+                <div class="alert alert-warning" th:errors="*{scanType}"></div>
             </div>
             <div class="form-group">
                 <label class="form-label">Employee:</label>
-                <select class="form-control" id="type" th:field="*{employee}">
+                <select class="form-control" id="employees" th:field="*{employee}">
                     <option value="">--SELECT EMPLOYEE--</option>
-                    <option th:each="em : ${employees}" th:value="${em.id}" th:text = "${em.scanType}"></option>
+                    <option th:each="em : ${employees}" th:value="${em.id}" th:text = "${em.employeeFirstName + ' ' + em.middleInitial + ' '+ em.employeeLastName}"></option>
                 </select>
-                <div class="alert alert-warning" th:errors="*{employees}"></div>
+                <div class="alert alert-warning" th:errors="*{employee}"></div>
             </div>
 
             <input class="btn btn-primary" type="submit" value="Create"/>
