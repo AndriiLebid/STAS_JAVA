@@ -16,6 +16,7 @@
         <h1>Create New Employee</h1>
         <form method="post" th:action="@{/employee/create}" th:object="${employee}">
 
+            <input th:field="*{employeeType}" type="hidden" />
 
             <div class="form-group">
                 <label class="form-label">Employee First Name: </label>

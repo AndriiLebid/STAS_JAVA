@@ -44,14 +44,17 @@ public class EmployeeController {
     //Create methods
     @GetMapping(value = "/employee/create")
     public String create(Model model) {
-        model.addAttribute("employee", new Employee());
-        model.addAttribute("roles", employeeRepository.findAll());
+
+        Employee employee  = new Employee();
+        model.addAttribute("employee", employee);
+        employee.setEmployeeType(employeeTypeRepository.getById(2));
         return "employee/create";
     }
 
     @PostMapping(value = "/employee/create")
     public String create(@Valid Employee employee, BindingResult br, Model model) {
         //Save
+
         if (!br.hasErrors()) {
             employeeRepository.save(employee);
             return "redirect:/employee";
