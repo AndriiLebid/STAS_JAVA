@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <link rel="stylesheet" th:href="@{styles.css}">
+    <meta charset="UTF-8">
+    <title>Hide Employee</title>
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+
+<div class="d-flex align-items-center justify-content-center">
+    <div class="container text-content">
+
+        <h1>Hide Employee</h1>
+
+        <dl class="row">
+            <dt class="col-sm-2">
+                Cart Number
+            </dt>
+            <dd class="col-sm-10">
+                <span th:text="${employee.employeeCardNumber}"></span>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                First Name
+            </dt>
+            <dd class="col-sm-10">
+                <span th:text="${employee.employeeFirstName}"></span>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                Middle Initial
+            </dt>
+            <dd class="col-sm-10">
+                <span th:text="${employee.middleInitial}"></span>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                Last Name
+            </dt>
+            <dd class="col-sm-10">
+                <span th:text="${employee.employeeLastName}"></span>
+            </dd>
+        </dl>
+
+        <form method="post" th:action="@{/employee/hide/{id}(id=${employee.id})}" th:object="${employee}">
+            <input th:field="*{id}" type="hidden" />
+            <input th:field="*{employeeType}" type="hidden" />
+            <input class="form-control" th:field="*{employeeFirstName}" type="hidden"/>
+            <input class="form-control" th:field="*{middleInitial}" type="hidden"/>
+            <input class="form-control" th:field="*{employeeLastName}" type="hidden"/>
+            <input class="form-control" th:field="*{employeeCardNumber}" type="hidden"/>
+
+            <input class="btn btn-primary" type="submit" value="Hide"/>
+        </form>
+        <div>
+            <a th:href="@{/employee}">Go Back</a>
+        </div>
+
+    </div>
+</div>
+
+<footer class="fixed-bottom" th:insert="~{footer :: footer}"></footer>
+</body>
+</html>

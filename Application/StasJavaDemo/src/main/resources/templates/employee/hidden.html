@@ -5,17 +5,17 @@
     <script th:src="@{/js/bootstrap.js}"></script>
     <link rel="stylesheet" th:href="@{styles.css}">
     <meta charset="UTF-8">
-    <title>STAS Demo systems - All Employees</title>
+    <title>STAS Demo systems - All Hidden Employees</title>
 </head>
 <body>
 <header th:insert="~{nav :: navbar}"></header>
 
 <div class="d-flex align-items-center justify-content-center">
     <div class="container text-content">
-        <h3>Employee List</h3>
+        <h3>Hidden Employee List</h3>
         <div>
             <a th:href="@{/employee/create}">Create New Employee</a> |
-            <a th:href="@{/employee/hidden}">Show hidden</a>
+            <a th:href="@{/employee}">Go back</a>
         </div>
         <table class="table" th:unless="${employee == null}">
             <thead>
@@ -34,9 +34,7 @@
                     <span th:text="${emp.employeeFirstName + ' ' + emp.middleInitial + ' ' + emp.employeeLastName}"></span>
                 </td>
                 <td>
-                    <a th:href="@{/employee/{id}(id=${emp.id})}">Details</a>
-                    <a th:href="@{/employee/edit/{id}(id=${emp.id})}"> | Edit</a>
-                    <a th:href="@{/employee/hide/{id}(id=${emp.id})}"> | Hide</a>
+                    <a th:href="@{/employee/unhide/{id}(id=${emp.id})}">UnHide</a>
                 </td>
             </tr>
             </tbody>

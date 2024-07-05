@@ -28,9 +28,16 @@ public class EmployeeController {
 
     @GetMapping(value = "employee")
     public String getAllEmployee(Model model){
-        var employee = employeeRepository.findAll();
+        var employee = employeeRepository.findAllByEmployeeType_Id(2);
         model.addAttribute("employee", employee);
         return "employee/index";
+    }
+
+    @GetMapping(value = "employee/hidden")
+    public String getHidden(Model model){
+        var employee = employeeRepository.findAllByEmployeeType_Id(1);
+        model.addAttribute("employee", employee);
+        return "employee/hidden";
     }
 
     @GetMapping(value = "/employee/{id}")
@@ -107,6 +114,50 @@ public class EmployeeController {
         }else{
             return "redirect:/employee";
         }
+    }
+
+    // Hide methods
+    @GetMapping(value = "/employee/hide/{id}")
+    public String hide(@PathVariable int id, Model model) {
+        var employee = employeeRepository.findById(id);
+        if (employee.isPresent())
+            model.addAttribute("employee", employee.get());
+        return "employee/hide";
+    }
+
+    @PostMapping(value = "/employee/hide/{id}")
+    public String hide(@Valid Employee employee, BindingResult br, Model model) {
+
+        if (!br.hasErrors()) {
+            employee.setEmployeeType(employeeTypeRepository.getById(1));
+            employeeRepository.save(employee);
+            return "redirect:/employee";
+        } else {
+            return "/employee/hide";
+        }
+
+    }
+
+    // UnHide methods
+    @GetMapping(value = "/employee/unhide/{id}")
+    public String unhide(@PathVariable int id, Model model) {
+        var employee = employeeRepository.findById(id);
+        if (employee.isPresent())
+            model.addAttribute("employee", employee.get());
+        return "employee/unhide";
+    }
+
+    @PostMapping(value = "/employee/unhide/{id}")
+    public String unhide(@Valid Employee employee, BindingResult br, Model model) {
+
+        if (!br.hasErrors()) {
+            employee.setEmployeeType(employeeTypeRepository.getById(2));
+            employeeRepository.save(employee);
+            return "redirect:/employee/hidden";
+        } else {
+            return "/employee/unhide";
+        }
+
     }
 
 
