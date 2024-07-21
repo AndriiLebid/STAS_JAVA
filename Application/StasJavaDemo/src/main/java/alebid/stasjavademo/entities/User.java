@@ -23,7 +23,7 @@ public class User {
 
     private String salt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "roleId", foreignKey = @ForeignKey(name = "FK_User_Role"))
     @NotNull(message = "Role is required")
     private Role role;

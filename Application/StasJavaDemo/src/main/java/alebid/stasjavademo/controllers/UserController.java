@@ -3,6 +3,7 @@ package alebid.stasjavademo.controllers;
 import alebid.stasjavademo.entities.User;
 import alebid.stasjavademo.repositories.RoleRepository;
 import alebid.stasjavademo.repositories.UserRepository;
+import alebid.stasjavademo.service.HashingService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,10 +20,12 @@ public class UserController {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+    private final HashingService hashingService;
 
-    public UserController(UserRepository userRepository, RoleRepository roleRepository) {
+    public UserController(UserRepository userRepository, RoleRepository roleRepository, HashingService hashingService) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
+        this.hashingService = hashingService;
     }
 
     @GetMapping(value = "users")
@@ -49,10 +52,24 @@ public class UserController {
 
     @PostMapping(value = "/users/create")
     public String create(@Valid User user, BindingResult br, Model model) {
+
+        var userCheck = userRepository.findByUserName(user.getUserName());
+        if (userCheck != null) {
+            br.rejectValue("username", "error.user", "The user with this same name was already registered.");
+        }
+
         //Save
         if (!br.hasErrors()) {
-            userRepository.save(user);
-            return "redirect:/users";
+            try {
+                var hashedPassword = hashingService.hash(user.getPassword());
+                user.setPassword(hashedPassword);
+                User usr = userRepository.save(user);
+                return "redirect:/login";
+
+            } catch (Exception ex) {
+                model.addAttribute("message", "Error user's registration");
+                return "users/index";
+            }
         } else {
             model.addAttribute("roles", roleRepository.findAll());
             return "users/create";

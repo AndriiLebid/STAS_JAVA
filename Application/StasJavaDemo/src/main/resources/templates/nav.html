@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+
 <head>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
     <script th:src="@{/js/bootstrap.js}"></script>
     <title>Navigation</title>
 
@@ -35,6 +38,7 @@
                             <li th:unless="${authenticated}" class="nav-item">
                                 <a  class="nav-link text-white" th:href="@{/login}">Login</a>
                             </li>
+
                             <li th:if="${authenticated}" class="nav-item">
                                 <form th:action="@{/logout}" method="post">
                                     <input type="submit" class="btn btn-link" value="Logout">
@@ -42,6 +46,15 @@
                             </li>
                         </ul>
                     </div>
+                    <div sec:authorize="isAuthenticated()">
+                        Welcome <b><span sec:authentication="name">UserName</span></b>
+                        &nbsp;
+                        <i><span sec:authentication="principal.authorities">Roles</span></i>
+                    </div>
+
+                    <form th:action="@{/logout} " method="post">
+                        <input sec:authorize="isAuthenticated()" type="submit" value="Logout" />
+                    </form>
                 </div>
             </nav>
         </div>
