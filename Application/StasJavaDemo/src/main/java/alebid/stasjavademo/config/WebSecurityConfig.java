@@ -39,7 +39,6 @@ public class WebSecurityConfig {
 
         http.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/").permitAll()
-                        .requestMatchers("/error/**").permitAll()
                         .requestMatchers("/employee/**").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/users/**").hasAuthority("ADMIN")
                         .requestMatchers("/scans/**").hasAnyAuthority("ADMIN", "USER")
@@ -47,7 +46,7 @@ public class WebSecurityConfig {
                 )
                 .formLogin(login -> login.permitAll())
                 .logout(logout -> logout.permitAll())
-                .exceptionHandling(eh -> eh.accessDeniedPage("/error"))
+                .exceptionHandling(eh -> eh.accessDeniedPage("/403"))
         ;
 
         return http.build();

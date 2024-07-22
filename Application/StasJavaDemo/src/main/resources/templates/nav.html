@@ -23,38 +23,35 @@
                     <div class="collapse navbar-collapse" id="navbarResponsive">
                         <ul class="navbar-nav ml-auto">
                             <!--/*@thymesVar id="authenticated" type="java.lang.Boolean"*/-->
-                            <li class="nav-item">
+                            <li sec:authorize="isAuthenticated()" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/scans}">Scan</a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/shift}">Shift</a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="isAuthenticated()" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/employee}">Employee</a>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/users}">User</a>
                             </li>
-                            <li th:unless="${authenticated}" class="nav-item">
+                            <li sec:authorize="!isAuthenticated()" class="nav-item">
                                 <a  class="nav-link text-white" th:href="@{/login}">Login</a>
                             </li>
 
-                            <li th:if="${authenticated}" class="nav-item">
+                            <li sec:authorize="isAuthenticated()" class="nav-item">
                                 <form th:action="@{/logout}" method="post">
                                     <input type="submit" class="btn btn-link" value="Logout">
                                 </form>
                             </li>
+
+                            <li sec:authorize="isAuthenticated()" class="nav-item">
+                                <label class="nav-link text-white">Welcome <b><span sec:authentication="principal.username">UserName</span></b></label>
+                            </li>
+
                         </ul>
                     </div>
-                    <div sec:authorize="isAuthenticated()">
-                        Welcome <b><span sec:authentication="name">UserName</span></b>
-                        &nbsp;
-                        <i><span sec:authentication="principal.authorities">Roles</span></i>
-                    </div>
 
-                    <form th:action="@{/logout} " method="post">
-                        <input sec:authorize="isAuthenticated()" type="submit" value="Logout" />
-                    </form>
                 </div>
             </nav>
         </div>
