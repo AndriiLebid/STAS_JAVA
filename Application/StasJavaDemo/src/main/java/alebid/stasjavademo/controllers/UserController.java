@@ -63,8 +63,8 @@ public class UserController {
             try {
                 var hashedPassword = hashingService.hash(user.getPassword());
                 user.setPassword(hashedPassword);
-                User usr = userRepository.save(user);
-                return "redirect:/login";
+                userRepository.save(user);
+                return "redirect:/users";
 
             } catch (Exception ex) {
                 model.addAttribute("message", "Error user's registration");
@@ -97,6 +97,36 @@ public class UserController {
         } else {
             model.addAttribute("roles", roleRepository.findAll());
             return "/users/edit";
+        }
+
+    }
+
+
+    //Change password methods
+    @GetMapping(value = "/users/password/{id}")
+    public String passChange(Model model, @PathVariable int id) {
+        var user = userRepository.findById(id);
+        if (user.isPresent()){
+            user.get().setPassword(null);
+            model.addAttribute("user", user.get());
+            model.addAttribute("roles", roleRepository.findAll());
+        }
+        return "users/password";
+    }
+
+
+    @PostMapping(value = "/users/password/{id}")
+    public String passChange(@Valid User user, BindingResult br, Model model) {
+
+        if (!br.hasErrors()) {
+
+            var hashedPassword = hashingService.hash(user.getPassword());
+            user.setPassword(hashedPassword);
+            userRepository.save(user);
+            return "redirect:/users";
+        } else {
+            model.addAttribute("roles", roleRepository.findAll());
+            return "/users/password";
         }
 
     }

@@ -26,13 +26,13 @@
                             <li sec:authorize="isAuthenticated()" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/scans}">Scan</a>
                             </li>
-                            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                            <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/shift}">Shift</a>
                             </li>
                             <li sec:authorize="isAuthenticated()" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/employee}">Employee</a>
                             </li>
-                            <li sec:authorize="hasRole('ADMIN')" class="nav-item">
+                            <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                                 <a class="nav-link text-white" th:href="@{/users}">User</a>
                             </li>
                             <li sec:authorize="!isAuthenticated()" class="nav-item">
