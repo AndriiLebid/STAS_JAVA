@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>STAS Demo ERROR 403</title>
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+
+<main class="background-image d-flex align-items-center justify-content-center">
+    <div class="container text-content">
+        <div class="row text-white">
+            <div class="col-md-12">
+                <p class="font-weight-bold, h2, text-danger" style="text-align: center">HTTP 403 is an HTTP status code meaning access to the requested resource is forbidden.
+                    The server understood the request, but will not fulfill it.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="fixed-bottom" th:insert="~{footer :: footer}"></footer>
+</body>
+</html>

@@ -42,11 +42,12 @@ public class WebSecurityConfig {
                         .requestMatchers("/employee/**").hasAnyAuthority("ADMIN", "USER")
                         .requestMatchers("/users/**").hasAuthority("ADMIN")
                         .requestMatchers("/scans/**").hasAnyAuthority("ADMIN", "USER")
+                        .requestMatchers("/shift/**").hasAnyAuthority("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login.permitAll())
                 .logout(logout -> logout.permitAll())
-                .exceptionHandling(eh -> eh.accessDeniedPage("/403"))
+                .exceptionHandling(eh -> eh.accessDeniedPage("/403.html"))
         ;
 
         return http.build();

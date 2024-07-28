@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <meta charset="UTF-8">
+    <title>STAS Demo systems - Shift Detail</title>
+</head>
+<body>
+<header th:insert="~{nav :: navbar}"></header>
+
+<div class="d-flex align-items-center justify-content-center">
+    <div class="container text-content">
+        <h1>Shift's Details</h1>
+        <div>
+            <h4>Shift</h4>
+            <hr/>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Employee Name
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.employee.employeeFirstName + ' ' + shift.employee.employeeLastName}"></span>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Shift Start
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getLOG_IN()}"></span>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    First Break Start
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getBREAK_IN_1()}"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    First Break End
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getBREAK_OUT_1()}"></span>
+                </dd>
+            </dl>
+
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Lunch Start
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getLUNCH_IN()}"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Lunch End
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getLUNCH_OUT()}"></span>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Second Break Start
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getBREAK_IN_2()}"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Second Break End
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getBREAK_OUT_2()}"></span>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Shift END
+                </dt>
+                <dd class="col-sm-10">
+                    <span th:text="${shift.getLOG_OUT()}"></span>
+                </dd>
+            </dl>
+
+
+            <div>
+                <a th:href="@{/shift}">Go Back</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="fixed-bottom" th:insert="~{footer :: footer}"></footer>
+</body>
+</html>
