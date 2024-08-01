@@ -14,5 +14,5 @@ public interface ScanRepository extends JpaRepository<RawScan, Integer> {
 
     List<RawScan> findAllByScanType(ScanType scanType);
     List<RawScan> findAllByEmployee_Id(int EmpId);
-
+    RawScan findTopByEmployee_IdOrderByIdDesc(int EmpId);
 }
