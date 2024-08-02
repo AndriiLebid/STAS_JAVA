@@ -12,5 +12,6 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     List<Employee> findAllByEmployeeType_Id(int typeId);
+    Employee findByEmployeeCardNumber(String employeeCardNumber);
 
 }

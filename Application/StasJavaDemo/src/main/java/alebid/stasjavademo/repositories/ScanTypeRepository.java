@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ScanTypeRepository extends JpaRepository<ScanType, Integer> {
+    ScanType findByTypeName(String name);
 }
 

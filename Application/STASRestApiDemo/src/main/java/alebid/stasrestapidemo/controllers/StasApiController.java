@@ -1,15 +1,13 @@
 package alebid.stasrestapidemo.controllers;
 
+import alebid.stasjavademo.entities.RawScan;
 import alebid.stasrestapidemo.dtos.ScanDTO;
 import alebid.stasrestapidemo.dtos.ValidationErrorDTO;
 import alebid.stasrestapidemo.services.ScanService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +23,13 @@ public class StasApiController {
     @GetMapping("/api/getLastScanByEmployeeId/{id}")
     public ResponseEntity<ScanDTO> getLastScanByUserID(@PathVariable int id){
         ScanDTO scan = scanService.getLastScanByUserId(id);
+        return ResponseEntity.ok(scan);
+    }
+
+    @PostMapping("/api/scan")
+    public ResponseEntity<RawScan> setRawScan(@RequestBody ScanDTO scanDTO){
+
+        RawScan scan = scanService.addRawScan(scanDTO);
         return ResponseEntity.ok(scan);
     }
 
